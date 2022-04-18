@@ -4,7 +4,7 @@
  * @param {string} string
  * @returns {string}
  */
-export const replaceZAndVFromString = (string) => {};
+export const replaceZAndVFromString = (string) => string.replace(/z|v/g, "*");
 
 /**
  * Функция должна принять 3 аргумента и все строки. Мы передаем строку,
@@ -16,7 +16,7 @@ export const replaceZAndVFromString = (string) => {};
  * @param {string} newWord
  * @returns {string}
  */
-export const changeWord = (string, word, newWord) => {};
+export const changeWord = (string, word, newWord) => string.replace(word, newWord);
 
 /**
  * Должна вернуть строку(1 аргумент) на обрезанную по длине(2 аргумент, число)
@@ -24,7 +24,7 @@ export const changeWord = (string, word, newWord) => {};
  * @param {number} length
  * @returns {string}
  */
-export const truncate = (string, length) => {};
+export const truncate = (string, length) => string.slice(0, length);
 
 /**
  * Принимает строку в первом аргументе, и символ во втором
@@ -37,7 +37,14 @@ export const truncate = (string, length) => {};
  * @param {string} symbol
  * @returns {number}
  */
-export const quantityOfSymbols = (string, symbol) => {};
+export const quantityOfSymbols = (string, symbol) => {
+  let j = 0;
+  string = string.toLowerCase().split("");
+  for(let i = 0; i < string.length - 1; i++){
+    if(string[i] === symbol.toLowerCase()) j++;
+  }
+  return j;
+};
 
 /**
  * Принимает строку в первом аргументе, и символ во втором
@@ -54,4 +61,17 @@ export const quantityOfSymbols = (string, symbol) => {};
  * @param {string} symbol
  * @returns {number}
  */
-export const quantityOfSymbolsWithIndexOf = (string, symbol) => {};
+export const quantityOfSymbolsWithIndexOf = (string, symbol) => {
+  string = string.toLowerCase();
+  let j = 0;
+  let index = 0;
+  while(true){
+    const search = string.indexOf(symbol.toLowerCase(), index);
+    if(search === -1) break;
+    else {
+      index = search + 1;
+      j++;
+    }
+  }
+  return j;
+};
